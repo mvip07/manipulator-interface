@@ -1,5 +1,6 @@
 import React from 'react';
-import { useGetHistoryQuery } from '../../api/commandsApi';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
 import {
     Table,
     TableBody,
@@ -9,26 +10,22 @@ import {
     TableRow,
     Paper,
     Typography,
-    CircularProgress,
     Box,
 } from '@mui/material';
 
 const CommandHistory: React.FC = () => {
-    const { data: history, isLoading, isError } = useGetHistoryQuery();
+    const { records } = useSelector((state: RootState) => state.history);
 
-    if (isLoading) {
+    if (!records || records.length === 0) {
         return (
-            <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
-                <CircularProgress />
+            <Box sx={{ p: 3 }}>
+                <Typography variant="h6" gutterBottom>
+                    История выполненных команд
+                </Typography>
+                <Typography variant="body1" sx={{ mt: 2 }}>
+                    На данный момент в истории нет записей
+                </Typography>
             </Box>
-        );
-    }
-
-    if (isError) {
-        return (
-            <Typography color="error" sx={{ mt: 4 }}>
-                Ошибка загрузки истории
-            </Typography>
         );
     }
 
@@ -37,7 +34,6 @@ const CommandHistory: React.FC = () => {
             <Typography variant="h6" gutterBottom>
                 История выполненных команд
             </Typography>
-
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
@@ -50,8 +46,8 @@ const CommandHistory: React.FC = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {history?.map((record, index: number) => (
-                            <TableRow key={index}>
+                        {records.map((record) => (
+                            <TableRow key={record.id}>
                                 <TableCell>{new Date(record.timestamp).toLocaleString()}</TableCell>
                                 <TableCell>{record.originalCommand}</TableCell>
                                 <TableCell>{record.optimizedCommand}</TableCell>

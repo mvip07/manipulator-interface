@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginSuccess } from '../features/auth/authSlice';
 import { useForm } from 'react-hook-form';
 import {
@@ -12,6 +12,7 @@ import {
     Paper,
     CircularProgress,
 } from '@mui/material';
+import { RootState } from '../app/store';
 
 interface LoginFormData {
     username: string;
@@ -21,6 +22,7 @@ interface LoginFormData {
 const Login: React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { isAuthenticated } = useSelector((state: RootState) => state.auth);
     const {
         register,
         handleSubmit,
@@ -28,6 +30,12 @@ const Login: React.FC = () => {
     } = useForm<LoginFormData>();
 
     const [loading, setLoading] = React.useState(false);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/dashboard');
+        }
+    }, [isAuthenticated, navigate]);
 
     const onSubmit = (data: LoginFormData) => {
         setLoading(true);
@@ -74,7 +82,7 @@ const Login: React.FC = () => {
                         sx={{ mt: 3, mb: 2 }}
                         disabled={loading}
                     >
-                        {loading ? <CircularProgress size={24} /> : 'Вход'}
+                        {loading ? <CircularProgress size={24} /> : 'Войти'}
                     </Button>
                     <Typography align="center">
                         Пользователь: admin | Пароль: admin

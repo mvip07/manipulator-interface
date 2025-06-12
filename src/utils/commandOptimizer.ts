@@ -1,13 +1,10 @@
 export const optimizeCommand = (command: string): string => {
     if (!command) return '';
 
-    // Faqat ruxsat etilgan belgilarni qoldiramiz
     const cleaned = command.replace(/[^ЛПВНОБ]/g, '');
 
-    // Ketma-ket takrorlanishlarni soddalashtiramiz
     const step1 = compressSequences(cleaned);
 
-    // Takrorlanuvchi naqshlarni topamiz
     const step2 = findRepeatingPatterns(step1);
 
     return step2;

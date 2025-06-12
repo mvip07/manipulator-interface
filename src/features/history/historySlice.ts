@@ -13,8 +13,13 @@ interface HistoryState {
     records: HistoryRecord[];
 }
 
+const loadHistoryFromLocalStorage = (): HistoryRecord[] => {
+    const savedHistory = localStorage.getItem('history');
+    return savedHistory ? JSON.parse(savedHistory) : [];
+};
+
 const initialState: HistoryState = {
-    records: [],
+    records: loadHistoryFromLocalStorage(),
 };
 
 const historySlice = createSlice({
@@ -22,11 +27,13 @@ const historySlice = createSlice({
     initialState,
     reducers: {
         addRecord(state, action: PayloadAction<Omit<HistoryRecord, 'id' | 'timestamp'>>) {
-            state.records.push({
+            const newRecord = {
                 id: Date.now().toString(),
                 timestamp: Date.now(),
                 ...action.payload,
-            });
+            };
+            state.records.push(newRecord);
+            localStorage.setItem('history', JSON.stringify(state.records));
         },
     },
 });

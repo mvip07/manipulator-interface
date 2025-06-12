@@ -10,8 +10,10 @@ const Home: React.FC = () => {
 
     return (
         <Container maxWidth="md">
-            <Paper elevation={3} sx={{ p: 4, mt: 4, textAlign: 'center' }}>
-                <Typography variant="h3" gutterBottom>
+            <Paper elevation={3} sx={{ p: 3, mt: 3, textAlign: 'center' }}>
+                <img src={"./logo.png"} width={150} height={150} className="img-fluid rounded-top" alt="Manipulation Interface Logo" />
+
+                <Typography variant="h4" gutterBottom>
                     Система управления манипулятором
                 </Typography>
                 <Typography variant="subtitle1" paragraph>
@@ -38,7 +40,7 @@ const Home: React.FC = () => {
                     )}
                 </Box>
 
-                <Box sx={{ mt: 6 }}>
+                <Box sx={{ mt: 3 }}>
                     <Typography variant="h5" gutterBottom>
                         Инструкция по использованию
                     </Typography>

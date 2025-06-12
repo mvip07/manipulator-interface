@@ -54,13 +54,14 @@ const Dashboard: React.FC = () => {
         if (!isPlaying || !currentCommand || commandIndex >= currentCommand.length) {
             if (isPlaying && currentCommand && commandIndex >= currentCommand.length) {
                 setIsPlaying(false);
+                const updatedSamples = samples.map(s => ({ x: s.x, y: s.y }));
                 dispatch(addRecord({
                     originalCommand: currentCommand,
                     optimizedCommand: optimizeCommand(currentCommand),
                     samplesBefore: samples.filter(s => !s.collected).map(s => ({ x: s.x, y: s.y })),
-                    samplesAfter: samples.filter(s => !s.collected).map(s => ({ x: s.x, y: s.y })),
+                    samplesAfter: updatedSamples,
                 }));
-                 dispatch(showNotification({
+                dispatch(showNotification({
                     type: 'success',
                     message: 'Команда успешно выполнена',
                 }));

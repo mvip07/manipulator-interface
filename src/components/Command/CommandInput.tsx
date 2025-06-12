@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { optimizeCommand } from '../../utils/commandOptimizer';
-import { useExecuteCommandMutation } from '../../api/commandsApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
+import { addRecord } from '../../features/history/historySlice';
+import { showNotification } from '../../features/commands/commandsSlice';
 import { TextField, Button, Box, Typography, Paper, CircularProgress, Grid } from '@mui/material';
 
 interface CommandFormData {
@@ -14,7 +17,9 @@ interface Sample {
 }
 
 const CommandInput: React.FC<{ onSubmit: (command: string) => void }> = ({ onSubmit }) => {
-    const [executeCommand, { isLoading }] = useExecuteCommandMutation();
+    const dispatch = useDispatch();
+    const { samples } = useSelector((state: RootState) => state.commands);
+    const [isLoading] = useState(false); 
     const { register, handleSubmit, reset, formState: { errors } } = useForm<CommandFormData>();
     const [optimizedCommand, setOptimizedCommand] = useState('');
 
@@ -25,20 +30,22 @@ const CommandInput: React.FC<{ onSubmit: (command: string) => void }> = ({ onSub
         }));
     };
 
-    const onFormSubmit = async (data: CommandFormData) => {
-        try {
-            const samplesBefore = generateRandomSamples();
-            await executeCommand({
-                originalCommand: data.command,
-                optimizedCommand,
-                samplesBefore,
-            }).unwrap();
-            onSubmit(data.command);
-            reset();
-            setOptimizedCommand('');
-        } catch (error) {
-            console.error('Command execution failed:', error);
-        }
+    const onFormSubmit = (data: CommandFormData) => {
+        const samplesBefore = generateRandomSamples();
+        const optimized = optimizeCommand(data.command);
+        dispatch(addRecord({
+            originalCommand: data.command,
+            optimizedCommand: optimized,
+            samplesBefore: samplesBefore,
+            samplesAfter: samplesBefore,
+        }));
+        dispatch(showNotification({
+            type: 'success',
+            message: 'Команда принята и оптимизирована',
+        }));
+        onSubmit(data.command);
+        reset();
+        setOptimizedCommand('');
     };
 
     const handleOptimize = (command: string) => {

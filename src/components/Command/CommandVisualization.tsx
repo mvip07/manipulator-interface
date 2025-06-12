@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Grid, Paper, Typography, Slider, Box, Button } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import { Paper, Typography, Slider, Box, Button } from '@mui/material';
 
 interface Position {
     x: number;
