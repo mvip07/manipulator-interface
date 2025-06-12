@@ -1,46 +1,85 @@
-# Getting Started with Create React App
+# Ozodov Mirabzal - Manipulation Interface
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Общая информация
+Этот проект представляет собой веб-интерфейс для управления манипулятором в подземной лаборатории, разработанный Ozodov Mirabzal. Приложение построено с использованием React, Redux Toolkit, Material UI и других современных технологий. Оно позволяет визуализировать движение манипулятора, оптимизировать команды и сохранять историю операций в localStorage. Проект оптимизирован для работы без бэкенда, что делает его легким и удобным для локального использования. Анимации и графики добавляют интерактивности, демонстрируя процесс выполнения команд.
 
-## Available Scripts
+## Umumiy ma’lumot
+Bu loyiha Ozodov Mirabzal tomonidan yaratilgan yer osti laboratoriyasida manipulyatorni boshqarish uchun mo‘ljallangan veb-interfeysdir. React, Redux Toolkit, Material UI va boshqa zamonaviy texnologiyalar asosida ishlab chiqilgan bo‘lib, manipulyatorning harakatlarini vizualizatsiya qilish, buyruqlarni optimallashtirish va operatsiyalar tarixini localStorage’da saqlash imkonini beradi. Backend’iz holda ishlaydigan bu loyiha oson va qulay bo‘lib, animatsiyalar va grafiklar interaktivlik qo‘shadi.
 
-In the project directory, you can run:
+## Функциональные возможности
+- **Авторизация**: Простая авторизация с логином и паролем (admin/admin), данные сохраняются в localStorage.
+- **Ввод и оптимизация команд**: Поддержка команд (Л, П, В, Н, О, Б) с автоматической оптимизацией.
+- **Анимации**: Визуализация движения манипулятора с плавными переходами, управляемая скоростью.
+- **Графики**: Интерактивная сетка для отображения позиций образцов до и после выполнения команд.
+- **История**: Сохранение истории команд с датой, временем и позициями образцов, доступное после перезагрузки страницы.
 
-### `yarn start`
+## Funksional imkoniyatlar
+- **Avtorizatsiya**: Oddiy login va parol bilan kirish (admin/admin), ma’lumotlar localStorage’da saqlanadi.
+- **Buyruqlar kiritish va optimallashtirish**: Buyruqlarni (Л, П, В, Н, О, Б) kiritish va avtomatik optimallashtirish.
+- **Animatsiyalar**: Manipulyatorning harakatini silliq o‘tkazishlar bilan vizualizatsiya qilish, tezlikni boshqarish imkoni.
+- **Grafiklar**: Buyruqlar bajarilishidan oldin va keyin namunalar pozitsiyalarini ko‘rsatish uchun interaktiv tarmoq.
+- **Tarix**: Buyruqlar tarixi sana, vaqt va namunalar pozitsiyasi bilan saqlanadi, sahifa qayta yuklanganda ham ko‘rinadi.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Установка и запуск
+1. **Клонирование репозитория**:
+   ```bash
+   git clone https://github.com/mvip07/manipulator-interface.git
+   cd manipulator-interface
+   ```
+2. **Установка зависимостей**:
+   Убедитесь, что установлен Node.js (версия 16.x или выше) и Yarn. Затем выполните:
+   ```bash
+   yarn install
+   ```
+3. **Запуск проекта**:
+   Для разработки используйте:
+   ```bash
+   yarn start
+   ```
+   Проект будет доступен на `http://localhost:3000`.
+4. **Сборка для деплоя**:
+   Для создания оптимизированной версии выполните:
+   ```bash
+   yarn build
+   ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## O‘rnatish va ishga tushirish
+1. **Repozitoriyani klon qilish**:
+   ```bash
+   git clone https://github.com/mvip07/manipulator-interface.git
+   cd manipulator-interface
+   ```
+2. **Qaramliklarni o‘rnatish**:
+   Node.js (16.x yoki undan yuqori versiya) va Yarn o‘rnatilganligiga ishonch hosil qiling, keyin:
+   ```bash
+   yarn install
+   ```
+3. **Loyihani ishga tushirish**:
+   Ishlab chiqish uchun:
+   ```bash
+   yarn start
+   ```
+   Loyiha `http://localhost:3000` manzilida ochiladi.
+4. **Deploy uchun yig‘ish**:
+   Optimallashtirilgan versiya uchun:
+   ```bash
+   yarn build
+   ```
 
-### `yarn test`
+## Использование анимаций и графиков
+- **Анимации**: Движение манипулятора отображается в реальном времени с помощью анимации, управляемой скоростью (5 кадров в секунду по умолчанию). Команды (Л, П, В, Н) вызывают плавные переходы.
+- **Графики**: Интерактивная сетка 10x10 показывает позиции образцов до и после выполнения команд. Используется MUI Grid для визуализации.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Foydalanish animatsiyalar va grafiklardan
+- **Animatsiyalar**: Manipulyatorning harakati real vaqt rejimida animatsiya orqali ko‘rsatiladi, tezlik boshqariladi (standartda 5 kadr/sekund). Buyruqlarga (Л, П, В, Н) asoslangan silliq o‘tkazishlar mavjud.
+- **Grafiklar**: 10x10 o‘lchamdagi interaktiv tarmoq namunalar pozitsiyalarini buyruqlar bajarilishidan oldin va keyin ko‘rsatadi. Vizualizatsiya uchun MUI Grid ishlatilgan.
 
-### `yarn build`
+## Разработка и вклад
+- Код написан на TypeScript с использованием React и Redux.
+- Для предложений или баг-репортов создайте issue на GitHub.
+- Для вклада выполните fork репозитория, внесите изменения и отправьте pull request.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Rivojlanish va hissa qo‘shish
+- Kod TypeScript, React va Redux yordamida yozilgan.
+- Takliflar yoki xatoliklar uchun GitHubda issue yarating.
+- His sa qo‘shish uchun repozitoriyani fork qiling, o‘zgarishlarni kiritib, pull request yuboring.
