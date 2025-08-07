@@ -11,8 +11,6 @@ const Home: React.FC = () => {
     return (
         <Container maxWidth="md">
             <Paper elevation={3} sx={{ p: 3, mt: 3, textAlign: 'center' }}>
-                <img src={"./logo.png"} width={150} height={150} className="img-fluid rounded-top" alt="Manipulation Interface Logo" />
-
                 <Typography variant="h4" gutterBottom>
                     Система управления манипулятором
                 </Typography>
